@@ -23,15 +23,16 @@ public class Playground {
 
 
 	//Population
-	static final int populationSize=500;
-	static final int matchesPlayed=50;
+	static final int populationSize=250;
+	static final int matchesPlayed=25;
+	static final int activeGameCount=40;
 	static final float AICutoff=0.70f;
 
 	//Mutation
-	static final float mutationAmount=0.01f;
+	static final float mutationAmount=0.02f;
 	static final float disruptiveMutationRate=.005f;
-	static final float range=0.15f;
-	static final float regularization=0.998f;
+	static final float range=0.2f;
+	static final float regularization=0.999f;
 
 	//Evolution
 	static final int elitism=0;
@@ -96,15 +97,14 @@ public class Playground {
 	 * For each Individual in population, runs 20 games
 	 */
 	public void Match() {
-
+		int gamesCompleteAndRunning=0;
 		for(int i=0;i<populationSize;i++) {
-			int startGamesComplete=gamesComplete;
 			for(int k=0;k<matchesPlayed;k++) { //---------------------------------------------------------
+				while(gamesCompleteAndRunning-gamesComplete>activeGameCount) 
+				{try {Thread.sleep(refresh);} catch (InterruptedException e) {}}
+				gamesCompleteAndRunning++;
 				runGame(currentPop.population.get(i),currentPop.population.get((int)(Math.random()*populationSize)));
 			}
-			while(gamesComplete<startGamesComplete+matchesPlayed) 
-			{try {Thread.sleep(refresh);} catch (InterruptedException e) {}}
-		//	System.out.println("FITNESS "+currentPop.population.get(i).getPlayer().getName()+":"+currentPop.population.get(i).getFitness());
 		}
 	}
 
@@ -132,10 +132,10 @@ public class Playground {
 			player1.getIndividual().inputGameResult(player2.getIndividual(),winner);
 			player2.getIndividual().inputGameResult(player1.getIndividual(),!winner);
 			if(winner) {
-				//System.out.println(player1.getName());
+				System.out.println("Winner:"+player1.getName());
 			}
 			else {
-				//System.out.println(player2.getName());
+				System.out.println("Winner:"+player2.getName());
 			}
 			//System.out.println(gamesComplete);
 			gamesComplete++;

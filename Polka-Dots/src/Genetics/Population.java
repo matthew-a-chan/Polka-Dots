@@ -161,6 +161,13 @@ public class Population {
 
 			makeChild(parent1,parent2,i);
 		}
+		
+		
+		for(i=1;i<Playground.populationSize;i++) {
+			File oldFile=population.get(i).file;
+			oldFile.delete();
+		}
+
 	}
 
 
