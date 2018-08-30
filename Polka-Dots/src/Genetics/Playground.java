@@ -23,21 +23,21 @@ public class Playground {
 
 
 	//Population
-	static final int populationSize=250;
+	static final int populationSize=500;
 	static final int matchesPlayed=25;
-	static final int activeGameCount=40;
+	static final int activeGameCount=25;
 	static final float AICutoff=0.70f;
 
 	//Mutation
-	static final float mutationAmount=0.02f;
-	static final float disruptiveMutationRate=.005f;
-	static final float range=0.2f;
+	static final float mutationAmount=0.005f;
+	static final float disruptiveMutationRate=.0050f;
+	static final float range=0.05f;
 	static final float regularization=0.999f;
 
 	//Evolution
 	static final int elitism=0;
 
-	private final int refresh=50;
+	private final int refresh=5;
 
 	int genNumber=0;
 
@@ -82,9 +82,6 @@ public class Playground {
 		for(int i=0;i<1000;i++) {
 			Match();
 			while(gamesComplete<populationSize*matchesPlayed-1) {try {Thread.sleep(refresh);} catch (InterruptedException e) {}}
-			if(genNumber%1==0) {
-				System.out.println("BENCH TEST");
-			}
 			System.out.println("NEW GEN INCOMING");
 			newGen();
 		}
@@ -132,10 +129,10 @@ public class Playground {
 			player1.getIndividual().inputGameResult(player2.getIndividual(),winner);
 			player2.getIndividual().inputGameResult(player1.getIndividual(),!winner);
 			if(winner) {
-				System.out.println("Winner:"+player1.getName());
+				//System.out.println("Winner:"+player1.getName());
 			}
 			else {
-				System.out.println("Winner:"+player2.getName());
+				//System.out.println("Winner:"+player2.getName());
 			}
 			//System.out.println(gamesComplete);
 			gamesComplete++;

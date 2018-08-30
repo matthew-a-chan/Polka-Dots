@@ -277,7 +277,7 @@ public abstract class TurnBasedGame implements GameState{
 
 			Playground.gameComplete(activePlayers.get(0), activePlayers.get(1), getWinners().get(0).contains(activePlayers.get(0)));
 
-			System.out.println("GAME FINISHED:"+activePlayers.get(0).getName()+":"+activePlayers.get(1).getName()+":Won-"+(getWinners().get(0).contains(activePlayers.get(0))));
+			//System.out.println("GAME FINISHED:"+activePlayers.get(0).getName()+":"+activePlayers.get(1).getName()+":Won-"+(getWinners().get(0).contains(activePlayers.get(0))));
 		}
 	}
 }

@@ -158,10 +158,13 @@ public class Population {
 		for(;i<Playground.populationSize;i++) {
 			File parent1=whichIndividual().file;
 			File parent2=whichIndividual().file;
-
+			
 			makeChild(parent1,parent2,i);
 		}
-		
+		try {
+		Thread.sleep(100);
+		}
+		catch(InterruptedException e) {};
 		
 		for(i=1;i<Playground.populationSize;i++) {
 			File oldFile=population.get(i).file;
